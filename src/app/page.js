@@ -1,14 +1,14 @@
-import Header from "@/components/Home";
-import ProductCard from "@/components/ProductCard";
-
+"use client"
+import ProductCard from '@/components/ProductCard';
+import MyQuery from '@/hooks/myQuery';
 export default function Home() {
+  const [data, isLoading, error] = MyQuery('https://64e45121c55563802913014d.mockapi.io/user/v1/products',)
   return (
     <main className="flex flex-col px-4">
-      <Header />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-7xl gap-14 mx-auto my-10">
-        <ProductCard />
-        <ProductCard />
-
+      <div className='grid md:grid-cols-3 grid-cols-1 gap-10 p-10'>
+        {
+          data?.map(product => <ProductCard key={product.id} product={product} />)
+        }
       </div>
     </main>
   )

@@ -1,5 +1,4 @@
 "use client"
-import Navbar from '@/components/Navbar'
 import './globals.css'
 import { Inter } from 'next/font/google'
 import Footer from '@/components/footer/Footer'
@@ -7,6 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import Navbar from '@/components/Navbar/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 const queryClient = new QueryClient()
 

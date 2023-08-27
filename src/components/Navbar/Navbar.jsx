@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-
+import styles from './page.module.css'
 const Navbar = () => {
     const navs = [
         {
@@ -25,9 +25,9 @@ const Navbar = () => {
         },
     ]
     return (
-        <div className='p-4 mb-5 bg-teal-100'>
+        <div className={`p-4 py-6 bg-teal-200 ${styles.navbar}`}>
             <div className='flex justify-between list-none items-center'>
-                <h2 className='font-bold text-2xl text-indigo-500'>TechConnect</h2>
+                <h2 className='font-bold text-2xl text-slate-600'>TechConnect</h2>
                 <div className='flex'>
                     {
                         navs.map(nav => <li key={nav.id} className='mx-1 p-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:bg-indigo-500 hover:text-white rounded-lg font-semibold'><Link href={nav.url} >{nav.address}</Link></li>)

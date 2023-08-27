@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 
-const MyQuery = (key, endpoint) => {
+const MyQuery = (url, key) => {
     const { isLoading, isError, data, error } = useQuery({
         queryKey: [key],
         queryFn: async () => {
             try {
-                const res = await fetch(`https://64e45121c55563802913014d.mockapi.io/user/v1/${endpoint}`)
-                return res.json()
+                const res = await axios.get(url)
+                return res.data
             }
             catch {
                 console.log(error);
