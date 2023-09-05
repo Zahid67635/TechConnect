@@ -1,0 +1,15 @@
+@keyframes slide {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(-140%);
+    }
+  }
+  .logosSlide{
+    display: flex;
+    animation: 10s slide infinite linear;
+  }
+  .logosSlide:hover{
+    animation-play-state: paused;
+  }

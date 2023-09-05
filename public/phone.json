@@ -1,0 +1,142 @@
+[
+    {
+      "id": 1,
+      "model": "Asus ROG Phone 7 Ultimate",
+      "image": "https://i.ibb.co/W6yVbs5/asus-rog-7.png",
+      "status": true,
+      "keyFeature": [
+        "Top-tier performance ",
+        "Excellent battery life",
+        "Stunning display ",
+        "Impressive cooling system"
+      ],
+      "price": 50000,
+      "rating": 4,
+      "spec": [
+        {
+          "processor": "Snapdragon 8 Gen 2"
+        },
+        {
+          "ram": "16GB RAM "
+        },
+        {
+          "screen": "165Hz 6.78in AMOLED"
+        },
+        {
+          "storage": "512GB storage"
+        },
+        {
+          "os": "Android 13"
+        },
+        {
+            "battery":"4500mAh battery"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "model": "Red Magic 8 Pro",
+      "image": "https://i.ibb.co/Jvdt6fY/Redmagic-8-Pro-MAIN.png",
+      "status": true,
+      "keyFeature": [
+        "50Mp f/1.88 main camera",
+        "6,000mAh battery",
+        "65W fast charging (with charger in box)",
+        "Snapdragon 8 Gen 2 processor"
+      ],
+      "price": 77000,
+      "rating": 4,
+      "spec": [
+        {
+          "processor": "Snapdragon 8 Gen 2 processor"
+        },
+       
+        {
+          "ram": "12GB RAM"
+        },
+        {
+          "screen": "6.8-inch AMOLED, 120Hz display Gorilla Glass 5"
+        },
+        {
+          "storage": "T256GB storage"
+        },
+        {
+            "os":"Android 13"
+        },
+        {
+            "battery":"6000mAh battery"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "model": "Motorola Edge 40 Pro ",
+      "image": "https://i.ibb.co/PFnWWbv/Motorola-Edge-40-Pro-01.png",
+      "status": true,
+      "keyFeature": [
+        "165Hz OLED display",
+        "Fantastic performance",
+        "IP68 rating",
+        "Snapdragon 8 Gen 2"
+      ],
+      "price": 77000,
+      "rating": 4,
+      "spec": [
+        {
+          "processor": "Snapdragon 8 Gen 2"
+        },
+        {
+          "ram": "12GB RAM"
+        },
+        {
+          "screen": "165Hz OLED display"
+        },
+        {
+          "storage": "T256GB storage"
+        },
+        {
+            "os":"Android 13"
+        },
+        {
+            "battery":"5000mAh battery"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "model": "Red Magic 7",
+      "image": "https://i.ibb.co/6ypMMq0/redmagic-7-review-15.png",
+      "status": true,
+      "keyFeature": [
+        "6.8in 165Hz OLED display",
+        "720Hz touch sample rate",
+        "65W fast charging (with charger in box)",
+        "Snapdragon 8 Gen 2 processor"
+      ],
+      "price": 75000,
+      "rating": 4,
+      "spec": [
+        {
+          "processor": "Snapdragon 8 Gen 1"
+        },
+       
+        {
+          "ram": "12GB RAM"
+        },
+        {
+          "screen": "6.8in Full HD+ AMOLED display"
+        },
+        {
+          "storage": "T256GB storage"
+        },
+        {
+            "os":"Red Magic OS 5.0 over Android 12"
+        },
+        {
+            "battery":"6000mAh battery"
+        }
+      ]
+    }
+   
+    
+  ]

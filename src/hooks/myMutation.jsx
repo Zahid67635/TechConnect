@@ -1,12 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
 
-const MyMutation = (key, endpoint) => {
-    const { isLoading, isError, data, error } = useMutation({
-        queryKey: [key],
-        queryFn: async () => {
+const MyMutation = (endpoint) => {
+    const mutation = useMutation({
+        mutationFn: async (data) => {
             try {
-                const res = await fetch(`https://64e45121c55563802913014d.mockapi.io/user/v1/${endpoint}`)
-                return res.json()
+                const res = await axios.post(`https://64e45121c55563802913014d.mockapi.io/user/v1/${endpoint}`, data)
+                return res.data
             }
             catch {
                 console.log(error);

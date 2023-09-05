@@ -1,15 +1,20 @@
 "use client"
-import ProductCard from '@/components/ProductCard';
-import MyQuery from '@/hooks/myQuery';
+import About from '@/components/home/About';
+import Categories from '@/components/home/Categories';
+import Header from '@/components/home/Header';
+import Hero from '@/components/home/Hero';
+import ImageSlider from '@/components/slider/ImageSlider';
 export default function Home() {
-  const [data, isLoading, error] = MyQuery('https://64e45121c55563802913014d.mockapi.io/user/v1/products',)
   return (
-    <main className="flex flex-col px-4">
-      <div className='grid md:grid-cols-3 grid-cols-1 gap-10 p-10'>
-        {
-          data?.map(product => <ProductCard key={product.id} product={product} />)
-        }
+    
+    <main className="flex flex-col gap-20 mb-10">
+      <Header/>
+      <div className='md:px-8 mx-2'>
+        <Categories />
       </div>
+      <Hero/>
+      <About/>
+      <ImageSlider/>
     </main>
   )
 }
