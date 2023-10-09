@@ -1,34 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TechConnect
 
-## Getting Started
+TechConnect is your ultimate destination for comprehensive and unbiased comparisons of gaming PCs and gaming laptops. In a rapidly evolving tech landscape, making informed decisions about your gaming setup is essential, and TechConnect is here to simplify that process for you.
 
-First, run the development server:
+## Features:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+* Our website allows you to compare two gaming PCs or two gaming laptops side by side, providing you with a clear and detailed breakdown of their specifications, performance, and features
+* We offer in-depth reviews of the latest gaming PCs and laptops.
+* Get the best value for your money. TechConnect provides pricing information from various retailers, helping you find the most competitive deals and discounts for the gaming PC or laptop that suits your budget
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Tech:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+NextJS, Formik & Yup, Tanstack Query, TailwindCSS, localStorage, MockAPI, Vercel.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
