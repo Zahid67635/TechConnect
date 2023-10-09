@@ -61,10 +61,10 @@ const page = ({ params }) => {
   const initialRows = () => {
     return (
       <>
-        {Array.from({ length: 6 }).map((row, key) => (
+        {Array.from({ length: 7 }).map((row, key) => (
           <tr key={key} className={`${key % 2 == 0 ? "bg-slate-200" : ""}`}>
             <th className="bg-slate-600 text-white p-3 text-sm font-semibold"></th>
-            <td className={`text-sm border border-indigo-500 p-5`}></td>
+            <td className={`text-sm border border-indigo-500 p-7`}></td>
           </tr>
         ))}
       </>
@@ -93,7 +93,7 @@ const page = ({ params }) => {
                   alt="image"
                   width={100}
                   height={100}
-                  className="w-32 h-20 transition duration-200 hover:scale-110 opacity-70 hover:opacity-100 cursor-pointer"
+                  className="md:w-32 h-20 w-20 transition duration-200 hover:scale-110 opacity-70 hover:opacity-100 cursor-pointer"
                   onClick={() => setSelectedImg(p.image)}
                 />
               );
@@ -123,13 +123,13 @@ const page = ({ params }) => {
               })}
             </ul>
           </div>
-          <div className="flex justify-between w-full">
+          <div className="flex md:flex-row flex-col md:justify-between gap-3 w-full">
             <h2 className="text-xl flex gap-1 items-center">
               <HiOutlineCurrencyBangladeshi className="text-2xl" />
               <p className="text-2xl font-bold">{price}</p> BDT
             </h2>
             <Link
-              className="p-2 px-4 bg-indigo-400 text-white rounded-xl font-semibold transition duration-300 hover:scale-105 hover:bg-indigo-500 flex items-center gap-3"
+              className="p-2 px-4 bg-indigo-400 text-white rounded-xl font-semibold transition duration-300 hover:scale-105 hover:bg-indigo-500 flex items-center justify-between gap-3"
               href={`#compare`}
             >
               Lets Compare
@@ -144,7 +144,7 @@ const page = ({ params }) => {
         Lets Compare With others
       </p>
       <div>
-        <div className="flex justify-end mt-2">
+        <div className="flex justify-end mt-2 max-w-screen-xl mx-auto">
           <select
             value={selectedValue}
             onChange={(e) => setSelectedValue(e.target.value)}
@@ -166,7 +166,7 @@ const page = ({ params }) => {
             ))}
           </select>
         </div>
-        <div className="mt-6">
+        <div className="mt-6 max-w-screen-xl mx-auto">
           <div
             className={`flex md:flex-row flex-col md:items-start items-center  justify-center md:px-0 ${
               currentPath ? "md:gap-20" : "md:gap-10"
@@ -212,7 +212,7 @@ const page = ({ params }) => {
                     <th className="text-sm p-3 border border-indigo-500 text-center">
                       Model
                     </th>
-                    <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px]">
+                    <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px] min-w-[240px]">
                       {selectedValue ? selectedValue : "Product Name"}
                     </td>
                   </tr>

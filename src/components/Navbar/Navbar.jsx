@@ -3,13 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
-import {
-  HiMenu,
-  HiX,
-  HiHome,
-  HiInformationCircle,
-  HiPhone,
-} from "react-icons/hi";
+import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
@@ -30,19 +24,11 @@ const Navbar = () => {
       id: 1,
       address: "Home",
       url: "/",
-      icon: <HiHome />,
     },
     {
       id: 2,
       address: "About",
       url: "/#about",
-      icon: <HiInformationCircle />,
-    },
-    {
-      id: 3,
-      address: "Contact",
-      url: "",
-      icon: <HiPhone />,
     },
   ];
   /**

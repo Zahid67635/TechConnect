@@ -4,12 +4,14 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { HiArrowCircleRight, HiSearch } from "react-icons/hi";
 import Spinner from "../Spinner";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [selectedText, setSelectedText] = useState("");
   const [selectedItem, setSelectedItem] = useState({});
   const [clicked, setClicked] = useState(false);
+  const route = useRouter();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["phones"],
     queryFn: () =>
@@ -22,13 +24,23 @@ const Header = () => {
     const matchItems = data.filter((p) =>
       p.model.toLowerCase().includes(search)
     );
+    if (!selectedText) {
+      setSelectedItem({});
+    }
     setSelectedText(search);
     setSearchResult(matchItems);
-    console.log(matchItems);
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (selectedItem) {
+      route.push(`/categories/gamingpc/${selectedItem.id}`);
+    }
   };
   if (isLoading) {
     return <Spinner />;
   }
+
+  console.log(selectedItem?.id);
   return (
     <section
       className={`flex md:flex-row flex-col-reverse items-center mb-10 bg-[url('/myheader.png')] bg-cover bg-center relative md:h-[100vh] h-[80vh] text-white`}
@@ -47,7 +59,10 @@ const Header = () => {
               World of Tech & the Cutting-Edge Tech World
             </p> */}
           </div>
-          <form className="w-3/4 flex flex-col gap-3 items-center relative">
+          <form
+            onSubmit={handleSearch}
+            className="w-3/4 flex flex-col gap-3 items-center relative"
+          >
             <span className="absolute top-4 left-2">
               <HiSearch className="text-black opacity-60" />
             </span>
@@ -80,15 +95,20 @@ const Header = () => {
               ))}
             </div>
 
-            <Link
-              href={`/categories/gamingpc/${selectedItem?.id}`}
-              className="p-2 px-5 bg-indigo-400 rounded-md text-white font-semibold flex items-center transition duration-200 ease-in hover:bg-indigo-500 hover:scale-105 justify-center mx-auto shadow-indigo-200 shadow-lg"
+            <button
+              type="submit"
+              className={`p-2 px-5 bg-indigo-400 rounded-md text-white font-semibold flex items-center transition duration-200 ease-in hover:bg-indigo-500 hover:scale-105 justify-center mx-auto shadow-indigo-200 shadow-md ${
+                selectedItem?.id === undefined
+                  ? "cursor-not-allowed"
+                  : "cursor-pointer"
+              }`}
+              disabled={selectedItem?.id === undefined}
             >
               Search
               <span className="text-xl ml-1">
                 <HiArrowCircleRight />
               </span>
-            </Link>
+            </button>
           </form>
         </div>
       </div>

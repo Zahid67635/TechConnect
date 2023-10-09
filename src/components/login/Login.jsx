@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaKey, FaAt, FaEyeSlash, FaEye } from "react-icons/fa";
@@ -53,7 +52,7 @@ const Login = () => {
     },
   });
   return (
-    <div className="md:w-96 flex flex-col justify-center border border-indigo-500 rounded-xl relative shadow-indigo-300 shadow-lg">
+    <div className="md:w-96 w-full flex flex-col justify-center border border-indigo-400 rounded-xl relative shadow-slate-300 shadow-md mx-3">
       {/* <div className="w-20 h-20 rounded-full bg-slate-100 absolute top-[-35px] right-[150px]">
         <Image
           src="/profile.jpg"
@@ -70,7 +69,11 @@ const Login = () => {
         <h1 className="text-3xl font-bold text-slate-700 text-center mb-5">
           Login
         </h1>
-        <label htmlFor="email"> Email</label>
+        <label className="flex" htmlFor="email">
+          {" "}
+          Email
+          <span className="text-red-500">*</span>
+        </label>
         <div className="w-full relative mb-5">
           <FaAt className="absolute top-[13px] left-2 opacity-50" />
 
@@ -87,7 +90,10 @@ const Login = () => {
             <p className="text-red-500 pl-2 ">{errors.email}</p>
           ) : null}
         </div>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password flex">
+          Password
+          <span className="text-red-500">*</span>
+        </label>
         <div className="w-full relative mb-5">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
           <input

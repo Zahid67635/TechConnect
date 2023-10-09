@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { FaUser, FaKey, FaAt } from "react-icons/fa";
 import { signUpSchema } from "./signUpSchema";
 import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
 
 const SignUpForm = () => {
   const [userImg, setUserImg] = useState("");
@@ -50,7 +51,7 @@ const SignUpForm = () => {
     onSubmit: (values, action) => {
       localStorage.setItem("user", JSON.stringify(values));
       localStorage.setItem("status", true);
-      console.log(values);
+      toast.success("Registration Success");
       router.push("/");
       action.resetForm();
     },
@@ -73,8 +74,9 @@ const SignUpForm = () => {
         <h1 className="text-3xl font-bold text-center mb-8 text-indigo-600">
           SignUp
         </h1>
-        <label className="p-1" htmlFor="name">
+        <label className="p-1 flex" htmlFor="name">
           Username
+          <span className="text-red-500">*</span>
         </label>
         <div className="w-full relative mb-5 ">
           <FaUser className="absolute top-[13px] left-2 opacity-50" />
@@ -92,8 +94,9 @@ const SignUpForm = () => {
             <p className="text-red-500 pl-2">{errors.name}</p>
           ) : null}
         </div>
-        <label className="p-1" htmlFor="email">
+        <label className="p-1 flex" htmlFor="email">
           Email
+          <span className="text-red-500">*</span>
         </label>
         <div className="w-full relative mb-5 ">
           <FaAt className="absolute top-[13px] left-2 opacity-50" />
@@ -111,8 +114,9 @@ const SignUpForm = () => {
             <p className="text-red-500 pl-2">{errors.email}</p>
           ) : null}
         </div>
-        <label className="p-1" htmlFor="password">
+        <label className="p-1 flex" htmlFor="password">
           Password
+          <span className="text-red-500">*</span>
         </label>
         <div className="w-full relative mb-5 ">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
@@ -130,8 +134,9 @@ const SignUpForm = () => {
             <p className="text-red-500 pl-2">{errors.password}</p>
           ) : null}
         </div>
-        <label className="p-1" htmlFor="confirm_password">
+        <label className="p-1 flex" htmlFor="confirm_password">
           Confirm Password
+          <span className="text-red-500">*</span>
         </label>
         <div className="w-full relative mb-5 ">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
@@ -185,14 +190,14 @@ const SignUpForm = () => {
         >
           SignUp
         </button>
-        <p className="text-center text-slate-600">
-          Already Have an Account?
-          <Link href="/login" className="font-semibold ">
-            {" "}
-            Login
-          </Link>
-        </p>
       </form>
+      <p className="text-center text-slate-600">
+        Already Have an Account?
+        <Link href="/login" className="font-semibold ">
+          {" "}
+          Login
+        </Link>
+      </p>
     </div>
   );
 };
