@@ -31,37 +31,22 @@ const Login = () => {
     email: "",
     password: "",
   };
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    touched,
-    errors,
-    handleBlur,
-  } = useFormik({
-    initialValues: initialValues,
-    validationSchema: loginSchema,
-    onSubmit: (values, action) => {
-      const isValid = validUser(values);
-      if (isValid) {
-        localStorage.setItem("status", true);
-        toast.success(<p className="font-bold">Login Successful</p>);
-        router.push("/");
-        action.resetForm();
-      }
-    },
-  });
+  const { values, handleChange, handleSubmit, touched, errors, handleBlur } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: loginSchema,
+      onSubmit: (values, action) => {
+        const isValid = validUser(values);
+        if (isValid) {
+          localStorage.setItem("status", true);
+          toast.success(<p className="font-bold">Login Successful</p>);
+          router.push("/");
+          action.resetForm();
+        }
+      },
+    });
   return (
     <div className="md:w-96 w-full flex flex-col justify-center border border-indigo-400 rounded-xl relative shadow-slate-300 shadow-md mx-3">
-      {/* <div className="w-20 h-20 rounded-full bg-slate-100 absolute top-[-35px] right-[150px]">
-        <Image
-          src="/profile.jpg"
-          alt=""
-          width={80}
-          height={80}
-          className="rounded-full"
-        />
-      </div> */}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center py-10 px-5 md:w-96"

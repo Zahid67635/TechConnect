@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+
 import { useFormik } from "formik";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,14 +22,7 @@ const SignUpForm = () => {
       setUserImg("");
     }
   };
-  // const mutation = useMutation({
-  //   mutationFn: (data) => {
-  //     return axios.post(
-  //       `https://64e45121c55563802913014d.mockapi.io/user/v1/users`,
-  //       data
-  //     );
-  //   },
-  // });
+
   //formik setup start
   const initialValues = {
     name: "",
@@ -38,35 +30,21 @@ const SignUpForm = () => {
     password: "",
     confirm_password: "",
   };
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    touched,
-    errors,
-    handleBlur,
-  } = useFormik({
-    initialValues: initialValues,
-    validationSchema: signUpSchema,
-    onSubmit: (values, action) => {
-      localStorage.setItem("user", JSON.stringify(values));
-      localStorage.setItem("status", true);
-      toast.success("Registration Success");
-      router.push("/");
-      action.resetForm();
-    },
-  });
+  const { values, handleChange, handleSubmit, touched, errors, handleBlur } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: signUpSchema,
+      onSubmit: (values, action) => {
+        localStorage.setItem("user", JSON.stringify(values));
+        localStorage.setItem("status", true);
+        toast.success("Registration Success");
+        router.push("/");
+        action.resetForm();
+      },
+    });
   //end
   return (
     <div className="w-full flex flex-col justify-center rounded-xl relative bg-transparent my-4">
-      {/* <div className="w-20 h-20 rounded-full bg-slate-100 absolute top-[-35px] right-[] border-cyan-500">
-        <Image
-          src={`${userImg ? userImg : "/profile.jpg"}`}
-          alt=""
-          fill={true}
-          className="rounded-full"
-        />
-      </div> */}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center py-12 px-4 w-full"
