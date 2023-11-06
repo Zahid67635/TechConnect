@@ -12,13 +12,17 @@ const Header = () => {
   const [selectedItem, setSelectedItem] = useState({});
   const [clicked, setClicked] = useState(false);
   const route = useRouter();
+
+  const fetchData = () =>
+    fetch(`https://64e45121c55563802913014d.mockapi.io/user/v1/gamingpc`)
+      .then((res) => res.json())
+      .then((data) => data);
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["phones"],
-    queryFn: () =>
-      fetch(`https://64e45121c55563802913014d.mockapi.io/user/v1/gamingpc`)
-        .then((res) => res.json())
-        .then((data) => data),
+    queryFn: fetchData,
   });
+
   const handleOnChange = (e) => {
     const search = e.target.value.toLowerCase();
     const matchItems = data.filter((p) =>
@@ -40,7 +44,6 @@ const Header = () => {
     return <Spinner />;
   }
 
-  console.log(selectedItem?.id);
   return (
     <section
       className={`flex md:flex-row flex-col-reverse items-center mb-10 bg-[url('/myheader.png')] bg-cover bg-center relative md:h-[100vh] h-[80vh] text-white`}
@@ -54,10 +57,10 @@ const Header = () => {
             <h1 className="text-6xl font-bold text-center drop-shadow-md mb-2">
               Explore Today's <span className="text-indigo-400">Gadgets</span>
             </h1>
-            {/* <p className="font-semibold text-xl">
+            <p className="font-semibold text-xl mx-auto text-center opacity-80">
               Experience into the World of Innovation, Navigating the Complex
               World of Tech & the Cutting-Edge Tech World
-            </p> */}
+            </p>
           </div>
           <form
             onSubmit={handleSearch}
@@ -70,7 +73,7 @@ const Header = () => {
               type="text"
               name="search"
               placeholder="Let's Search a Product"
-              className="w-full py-3 outline-indigo-300 px-7 rounded-lg mb-4 shadow-indigo-400 shadow-md text-black font-semibold"
+              className="w-full py-3 outline-indigo-300 md:px-10 px-7 rounded-lg mb-4 shadow-indigo-400 shadow-md text-black font-semibold"
               id=""
               value={selectedText}
               onChange={handleOnChange}
@@ -97,7 +100,7 @@ const Header = () => {
 
             <button
               type="submit"
-              className={`p-2 px-5 bg-indigo-400 rounded-md text-white font-semibold flex items-center transition duration-200 ease-in hover:bg-indigo-500 hover:scale-105 justify-center mx-auto shadow-indigo-200 shadow-md ${
+              className={`p-2 px-5 bg-indigo-500 rounded-md text-white font-semibold flex items-center transition duration-200 ease-in hover:bg-indigo-600 hover:scale-105 justify-center mx-auto ${
                 selectedItem?.id === undefined
                   ? "cursor-not-allowed"
                   : "cursor-pointer"

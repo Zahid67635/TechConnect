@@ -19,6 +19,8 @@ const page = ({ params }) => {
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedImg, setSelectedImg] = useState("");
   const currentPath = usePathname().includes("phones");
+  const user =
+    typeof window !== "undefined" && JSON.parse(localStorage.getItem("status"));
   const { isLoading, isError, data, error } = useQuery({
     queryKey: [`/products/${params.id}`],
     queryFn: () =>
@@ -143,101 +145,117 @@ const page = ({ params }) => {
       <p className="whitespace-nowrap font-semibold md:text-3xl p-2 text-center mt-16 md:w-1/3 mx-auto bg-indigo-200 rounded-xl mb-8">
         Lets Compare With others
       </p>
-      <div>
-        <div className="flex justify-end mt-2 max-w-screen-xl mx-auto">
-          <select
-            value={selectedValue}
-            onChange={(e) => setSelectedValue(e.target.value)}
-            className="relative md:w-40 w-20 h-10 rounded-md p-1 font-thin outline outline-1 outline-indigo-400 cursor-pointer shadow-lg"
-            type="select"
-            name=""
-          >
-            <option value="" className="absolute bottom-0 left-0">
-              Choose Product
-            </option>
-            {result?.map((r, i) => (
-              <option
-                className="absolute bottom-0 left-0"
-                key={i}
-                value={r.model}
-              >
-                {r.model}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mt-6 max-w-screen-xl mx-auto">
-          <div
-            className={`flex md:flex-row flex-col md:items-start items-center  justify-center md:px-0 ${
-              currentPath ? "md:gap-20" : "md:gap-10"
-            }`}
-            id="compare"
-          >
-            <div>
-              <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
-                <tbody>
-                  <tr>
-                    <th className="text-sm md:p-3 p-1 border border-indigo-500 text-center">
-                      Model
-                    </th>
-                    <td className="text-sm md:p-3 p-1 border border-indigo-500 text-center font-bold md:min-w-[400px]">
-                      {model}
-                    </td>
-                  </tr>
-                  {spec?.map((s, i) => {
-                    return (
-                      <tr
-                        key={i}
-                        className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
-                      >
-                        <th className="bg-slate-600 text-white md:p-3 p-1 md:text-sm text-xs font-semibold">
-                          {Object.keys(s)[0].toUpperCase()}
-                        </th>
-                        <td className="text-sm md:p-3 p-1 border border-indigo-500">
-                          {Object.values(s)[0]}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex items-center justify-center">
-              <Image src={`/vs.png`} alt="" width={200} height={200} />
-            </div>
-            <div>
-              <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
-                <tbody className="">
-                  <tr>
-                    <th className="text-sm p-3 border border-indigo-500 text-center">
-                      Model
-                    </th>
-                    <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px] min-w-[240px]">
-                      {selectedValue ? selectedValue : "Product Name"}
-                    </td>
-                  </tr>
 
-                  {selectedProduct
-                    ? selectedProduct?.spec.map((s, i) => {
-                        return (
-                          <tr
-                            key={i}
-                            className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
-                          >
-                            <th className="bg-slate-600 text-white p-3 text-sm font-semibold">
-                              {Object.keys(s)[0].toUpperCase()}
-                            </th>
-                            <td
-                              className={`text-sm p-3 border border-indigo-500`}
+      <div className="relative">
+        <div
+          className={`h-full flex items-center justify-center absolute inset-0 bg-slate-100 blur-sm opacity-80 ${
+            user && "hidden"
+          }`}
+        ></div>
+        <Link
+          href={`/login`}
+          className={`bg-indigo-400 p-3 px-5 rounded-md text-white font-medium z-50 absolute md:top-1/2 md:right-[45%] top-1/3 right-1/4 hover:scale-105 transition-all duration-150 shadow-md shadow-slate-400 hover:bg-indigo-500 ${
+            user && "hidden"
+          }`}
+        >
+          SignIn To Go Ahead
+        </Link>
+        <div>
+          <div
+            className={`flex justify-end mt-2 max-w-screen-xl mx-auto ${
+              !user ? "blur-sm" : "blur-none"
+            }`}
+          >
+            <select
+              value={selectedValue}
+              onChange={(e) => setSelectedValue(e.target.value)}
+              className="md:w-40 w-20 h-10 rounded-md p-1 font-thin outline outline-1 outline-indigo-400 cursor-pointer shadow-lg"
+              type="select"
+              name=""
+            >
+              <option value="" className="">
+                Choose Product
+              </option>
+              {result?.map((r, i) => (
+                <option className="" key={i} value={r.model}>
+                  {r.model}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="mt-6 max-w-screen-xl mx-auto">
+            <div
+              className={`flex md:flex-row flex-col md:items-start items-center  justify-center md:px-0 ${
+                currentPath ? "md:gap-20" : "md:gap-10"
+              }`}
+              id="compare"
+            >
+              <div className={`${!user ? "blur-sm" : "blur-none"} `}>
+                <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
+                  <tbody>
+                    <tr>
+                      <th className="text-sm md:p-3 p-1 border border-indigo-500 text-center">
+                        Model
+                      </th>
+                      <td className="text-sm md:p-3 p-1 border border-indigo-500 text-center font-bold md:min-w-[400px]">
+                        {model}
+                      </td>
+                    </tr>
+                    {spec?.map((s, i) => {
+                      return (
+                        <tr
+                          key={i}
+                          className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
+                        >
+                          <th className="bg-slate-600 text-white md:p-3 p-1 md:text-sm text-xs font-semibold">
+                            {Object.keys(s)[0].toUpperCase()}
+                          </th>
+                          <td className="text-sm md:p-3 p-1 border border-indigo-500">
+                            {Object.values(s)[0]}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image src={`/vs.png`} alt="" width={200} height={200} />
+              </div>
+              <div className={`${!user ? "blur-sm" : "blur-none"} `}>
+                <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
+                  <tbody className="">
+                    <tr>
+                      <th className="text-sm p-3 border border-indigo-500 text-center">
+                        Model
+                      </th>
+                      <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px] min-w-[240px]">
+                        {selectedValue ? selectedValue : "Product Name"}
+                      </td>
+                    </tr>
+
+                    {selectedProduct
+                      ? selectedProduct?.spec.map((s, i) => {
+                          return (
+                            <tr
+                              key={i}
+                              className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
                             >
-                              {Object.values(s)[0]}
-                            </td>
-                          </tr>
-                        );
-                      })
-                    : initialRows()}
-                </tbody>
-              </table>
+                              <th className="bg-slate-600 text-white p-3 text-sm font-semibold">
+                                {Object.keys(s)[0].toUpperCase()}
+                              </th>
+                              <td
+                                className={`text-sm p-3 border border-indigo-500`}
+                              >
+                                {Object.values(s)[0]}
+                              </td>
+                            </tr>
+                          );
+                        })
+                      : initialRows()}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

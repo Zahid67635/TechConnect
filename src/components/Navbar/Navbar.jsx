@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { HiMenu, HiX } from "react-icons/hi";
 import Image from "next/image";
@@ -9,7 +9,7 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [change, setChange] = useState(false);
   const currentPath = usePathname();
-
+  const router = useRouter();
   const userSting =
     typeof window !== "undefined" && localStorage.getItem("user");
   const user = typeof window !== "undefined" && JSON.parse(userSting);
@@ -40,9 +40,10 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.setItem("status", false);
     setChange(false);
+    router.push("/");
   };
   return (
-    <div className={`p-4 py-6 bg-white drop-shadow-lg`}>
+    <div className={`p-4 py-6 bg-white drop-shadow-lg sticky top-0 z-50`}>
       <div className="flex justify-between list-none items-center">
         <div className="flex">
           <Image src="/logoipsum-277.svg" alt="" width={30} height={30} />
@@ -131,7 +132,6 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-    // </div>
   );
 };
 
