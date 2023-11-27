@@ -65,7 +65,7 @@ const page = ({ params }) => {
       <>
         {Array.from({ length: 7 }).map((row, key) => (
           <tr key={key} className={`${key % 2 == 0 ? "bg-slate-200" : ""}`}>
-            <th className="bg-slate-600 text-white p-3 text-sm font-semibold"></th>
+            <th className="p-3 text-sm font-semibold text-white bg-slate-600"></th>
             <td className={`text-sm border border-indigo-500 p-7`}></td>
           </tr>
         ))}
@@ -76,17 +76,17 @@ const page = ({ params }) => {
     return <Spinner />;
   }
   return (
-    <section className="mt-4 px-8 mb-14 ">
-      <div className="flex md:flex-row flex-col md:gap-20 justify-center bg-slate-100 p-2 rounded-lg md:py-0 py-4">
-        <div className="md:w-2/5 flex flex-col justify-center items-center mb-16 rounded-lg">
+    <section className="px-8 mt-4 mb-14 ">
+      <div className="flex flex-col justify-center p-2 py-4 rounded-lg md:flex-row md:gap-20 bg-slate-100 md:py-0">
+        <div className="flex flex-col items-center justify-center mb-16 rounded-lg md:w-2/5">
           <Image
             src={selectedImg ? selectedImg : image}
             alt=""
             width={400}
             height={400}
-            className="w-full object-contain aspect-square p-6 rounded-lg"
+            className="object-contain w-full p-6 rounded-lg aspect-square"
           />
-          <div className="flex md:gap-4 gap-2 bg-white rounded-md flex-wrap">
+          <div className="flex flex-wrap gap-2 bg-white rounded-md md:gap-4">
             {products?.slice(0, 3).map((p, key) => {
               return (
                 <Image
@@ -95,7 +95,7 @@ const page = ({ params }) => {
                   alt="image"
                   width={100}
                   height={100}
-                  className="md:w-32 h-20 w-20 transition duration-200 hover:scale-110 opacity-70 hover:opacity-100 cursor-pointer"
+                  className="w-20 h-20 transition duration-200 cursor-pointer md:w-32 hover:scale-110 opacity-70 hover:opacity-100"
                   onClick={() => setSelectedImg(p.image)}
                 />
               );
@@ -103,18 +103,18 @@ const page = ({ params }) => {
           </div>
         </div>
         <div className="flex flex-col justify-center md:min-w-[400px]">
-          <h1 className="text-3xl font-bold mb-2">{model}</h1>
+          <h1 className="mb-2 text-3xl font-bold">{model}</h1>
 
-          <p className="text-lg font-bold flex gap-1 items-center">
+          <p className="flex items-center gap-1 text-lg font-bold">
             Rating: {ratingCount()}
           </p>
           <div className="my-10">
-            <h2 className="text-xl font-semibold mb-2">Key Features:</h2>
-            <ul className="space-y-2 px-3">
+            <h2 className="mb-2 text-xl font-semibold">Key Features:</h2>
+            <ul className="px-3 space-y-2">
               {keyFeature?.map((feature, i) => {
                 return (
                   <>
-                    <li key={i} className="text-sm flex items-center gap-2">
+                    <li key={i} className="flex items-center gap-2 text-sm">
                       <span>
                         <HiArrowNarrowRight className="text-xl text-indigo-500" />
                       </span>
@@ -125,13 +125,13 @@ const page = ({ params }) => {
               })}
             </ul>
           </div>
-          <div className="flex md:flex-row flex-col md:justify-between gap-3 w-full">
-            <h2 className="text-xl flex gap-1 items-center">
+          <div className="flex flex-col w-full gap-3 md:flex-row md:justify-between">
+            <h2 className="flex items-center gap-1 text-xl">
               <HiOutlineCurrencyBangladeshi className="text-2xl" />
               <p className="text-2xl font-bold">{price}</p> BDT
             </h2>
             <Link
-              className="p-2 px-4 bg-indigo-400 text-white rounded-xl font-semibold transition duration-300 hover:scale-105 hover:bg-indigo-500 flex items-center justify-between gap-3"
+              className="flex items-center justify-between gap-3 p-2 px-4 font-semibold text-white transition duration-300 bg-indigo-400 rounded-xl hover:scale-105 hover:bg-indigo-500"
               href={`#compare`}
             >
               Lets Compare
@@ -142,7 +142,7 @@ const page = ({ params }) => {
           </div>
         </div>
       </div>
-      <p className="whitespace-nowrap font-semibold md:text-3xl p-2 text-center mt-16 md:w-1/3 mx-auto bg-indigo-200 rounded-xl mb-8">
+      <p className="p-2 mx-auto mt-16 mb-8 font-semibold text-center bg-indigo-200 whitespace-nowrap md:text-3xl md:w-1/3 rounded-xl">
         Lets Compare With others
       </p>
 
@@ -162,14 +162,14 @@ const page = ({ params }) => {
         </Link>
         <div>
           <div
-            className={`flex justify-end mt-2 max-w-screen-xl mx-auto ${
+            className={`md:flex justify-end mt-2 max-w-screen-xl mx-auto hidden ${
               !user ? "blur-sm" : "blur-none"
             }`}
           >
             <select
               value={selectedValue}
               onChange={(e) => setSelectedValue(e.target.value)}
-              className="md:w-40 w-20 h-10 rounded-md p-1 font-thin outline outline-1 outline-indigo-400 cursor-pointer shadow-lg"
+              className="w-20 h-10 p-1 font-thin rounded-md shadow-lg cursor-pointer md:w-40 outline outline-1 outline-indigo-400"
               type="select"
               name=""
             >
@@ -183,7 +183,7 @@ const page = ({ params }) => {
               ))}
             </select>
           </div>
-          <div className="mt-6 max-w-screen-xl mx-auto">
+          <div className="max-w-screen-xl mx-auto mt-6">
             <div
               className={`flex md:flex-row flex-col md:items-start items-center  justify-center md:px-0 ${
                 currentPath ? "md:gap-20" : "md:gap-10"
@@ -191,13 +191,13 @@ const page = ({ params }) => {
               id="compare"
             >
               <div className={`${!user ? "blur-sm" : "blur-none"} `}>
-                <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
+                <table className="w-full border border-indigo-500 shadow-xl md:shadow-gray-300">
                   <tbody>
                     <tr>
-                      <th className="text-sm md:p-3 p-1 border border-indigo-500 text-center">
+                      <th className="p-1 text-sm text-center border border-indigo-500 md:p-3">
                         Model
                       </th>
-                      <td className="text-sm md:p-3 p-1 border border-indigo-500 text-center font-bold md:min-w-[400px]">
+                      <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px]">
                         {model}
                       </td>
                     </tr>
@@ -207,10 +207,10 @@ const page = ({ params }) => {
                           key={i}
                           className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
                         >
-                          <th className="bg-slate-600 text-white md:p-3 p-1 md:text-sm text-xs font-semibold">
+                          <th className="p-1 text-xs font-semibold text-white bg-slate-600 md:p-3 md:text-sm">
                             {Object.keys(s)[0].toUpperCase()}
                           </th>
-                          <td className="text-sm md:p-3 p-1 border border-indigo-500">
+                          <td className="p-3 text-sm border border-indigo-500">
                             {Object.values(s)[0]}
                           </td>
                         </tr>
@@ -223,13 +223,35 @@ const page = ({ params }) => {
                 <Image src={`/vs.png`} alt="" width={200} height={200} />
               </div>
               <div className={`${!user ? "blur-sm" : "blur-none"} `}>
-                <table className="w-full shadow-xl md:shadow-gray-300 border border-indigo-500">
+                <div
+                  className={`flex justify-end mt-2 max-w-screen-xl mx-auto md:hidden ${
+                    !user ? "blur-sm" : "blur-none"
+                  }`}
+                >
+                  <select
+                    value={selectedValue}
+                    onChange={(e) => setSelectedValue(e.target.value)}
+                    className="w-1/3 h-10 p-1 font-thin rounded-md shadow-lg cursor-pointer md:w-40 outline outline-1 outline-indigo-400"
+                    type="select"
+                    name=""
+                  >
+                    <option value="" className="">
+                      Choose Product
+                    </option>
+                    {result?.map((r, i) => (
+                      <option className="" key={i} value={r.model}>
+                        {r.model}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <table className="w-full mt-5 border border-indigo-500 shadow-xl md:mt-0 md:shadow-gray-300">
                   <tbody className="">
                     <tr>
-                      <th className="text-sm p-3 border border-indigo-500 text-center">
+                      <th className="p-3 text-sm text-center border border-indigo-500">
                         Model
                       </th>
-                      <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px] min-w-[240px]">
+                      <td className="text-sm p-3 border border-indigo-500 text-center font-bold md:min-w-[400px]">
                         {selectedValue ? selectedValue : "Product Name"}
                       </td>
                     </tr>
@@ -241,7 +263,7 @@ const page = ({ params }) => {
                               key={i}
                               className={`${i % 2 == 0 ? "bg-slate-200" : ""}`}
                             >
-                              <th className="bg-slate-600 text-white p-3 text-sm font-semibold">
+                              <th className="p-3 text-sm font-semibold text-white bg-slate-600">
                                 {Object.keys(s)[0].toUpperCase()}
                               </th>
                               <td
