@@ -1,11 +1,9 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Footer from "@/components/footer/Footer";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "@/components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
 import Wrapper from "@/Wrapper/Wrapper";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "TechConnect",
