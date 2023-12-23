@@ -4,10 +4,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="md:flex w-full">
+    <div className="w-full md:flex">
       <div className="w-[65%] hidden md:block">
         <Image
-          src={`/register.png`}
+          src={`/register.jpg`}
           alt=""
           width={400}
           height={400}

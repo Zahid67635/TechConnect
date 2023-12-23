@@ -44,19 +44,19 @@ const SignUpForm = () => {
     });
   //end
   return (
-    <div className="w-full flex flex-col justify-center rounded-xl relative bg-transparent my-4">
+    <div className="relative flex flex-col justify-center w-full py-4 bg-transparent rounded-xl">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center py-12 px-4 w-full"
+        className="flex flex-col justify-center w-full px-4 py-12"
       >
-        <h1 className="text-3xl font-bold text-center mb-8 text-indigo-600">
+        <h1 className="mb-8 text-3xl font-bold text-center text-indigo-600">
           SignUp
         </h1>
-        <label className="p-1 flex" htmlFor="name">
+        <label className="flex p-1" htmlFor="name">
           Username
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5 ">
+        <div className="relative w-full mb-5 ">
           <FaUser className="absolute top-[13px] left-2 opacity-50" />
           <input
             type="text"
@@ -66,17 +66,17 @@ const SignUpForm = () => {
             onBlur={handleBlur}
             required
             placeholder="Your full Name"
-            className="rounded-2xl py-2 pl-8 w-full focus:outline-cyan-500 border-indigo-400 border border-l-4"
+            className="w-full py-2 pl-8 border border-l-4 border-indigo-400 rounded-2xl focus:outline-cyan-500"
           />
           {errors.name && touched.name ? (
-            <p className="text-red-500 pl-2">{errors.name}</p>
+            <p className="pl-2 text-red-500">{errors.name}</p>
           ) : null}
         </div>
-        <label className="p-1 flex" htmlFor="email">
+        <label className="flex p-1" htmlFor="email">
           Email
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5 ">
+        <div className="relative w-full mb-5 ">
           <FaAt className="absolute top-[13px] left-2 opacity-50" />
           <input
             type="text"
@@ -86,17 +86,17 @@ const SignUpForm = () => {
             onBlur={handleBlur}
             required
             placeholder="Your Email"
-            className="rounded-2xl py-2 pl-8 w-full focus:outline-cyan-500 border-indigo-400 border border-l-4"
+            className="w-full py-2 pl-8 border border-l-4 border-indigo-400 rounded-2xl focus:outline-cyan-500"
           />
           {errors.email && touched.email ? (
-            <p className="text-red-500 pl-2">{errors.email}</p>
+            <p className="pl-2 text-red-500">{errors.email}</p>
           ) : null}
         </div>
-        <label className="p-1 flex" htmlFor="password">
+        <label className="flex p-1" htmlFor="password">
           Password
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5 ">
+        <div className="relative w-full mb-5 ">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
           <input
             type="password"
@@ -106,17 +106,17 @@ const SignUpForm = () => {
             onBlur={handleBlur}
             required
             placeholder="Your Password"
-            className="rounded-2xl py-2 pl-8 w-full focus:outline-cyan-500 border-indigo-400 border border-l-4"
+            className="w-full py-2 pl-8 border border-l-4 border-indigo-400 rounded-2xl focus:outline-cyan-500"
           />
           {errors.password && touched.password ? (
-            <p className="text-red-500 pl-2">{errors.password}</p>
+            <p className="pl-2 text-red-500">{errors.password}</p>
           ) : null}
         </div>
-        <label className="p-1 flex" htmlFor="confirm_password">
+        <label className="flex p-1" htmlFor="confirm_password">
           Confirm Password
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5 ">
+        <div className="relative w-full mb-5 ">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
           <input
             type="password"
@@ -126,16 +126,16 @@ const SignUpForm = () => {
             onBlur={handleBlur}
             required
             placeholder="Confirm Password"
-            className="rounded-2xl py-2 pl-8 w-full focus:outline-cyan-500 border-indigo-400 border border-l-4"
+            className="w-full py-2 pl-8 border border-l-4 border-indigo-400 rounded-2xl focus:outline-cyan-500"
           />
           {errors.confirm_password && touched.confirm_password ? (
-            <p className="text-red-500 pl-2">{errors.confirm_password}</p>
+            <p className="pl-2 text-red-500">{errors.confirm_password}</p>
           ) : null}
         </div>
-        <div className="w-full text-slate-600 mb-5">
+        <div className="w-full mb-5 text-slate-600">
           <span className="mb-4">Upload Your Image </span>
           <div className="flex items-center">
-            <div className=" mr-3">
+            <div className="mr-3 ">
               <Image
                 src={`${userImg ? userImg : "/profile.jpg"}`}
                 alt=""
@@ -151,20 +151,13 @@ const SignUpForm = () => {
               onBlur={handleBlur}
               id="userImage"
               type="file"
-              className="cursor-pointer block w-full text-sm text-slate-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-violet-700
-      hover:file:bg-violet-100 hover:file:cursor-pointer
-      mt-2
-    "
+              className="block w-full mt-2 text-sm cursor-pointer text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 hover:file:cursor-pointer "
             />
           </div>
         </div>
         <button
           type="submit"
-          className="outline outline-1 outline-black rounded-2xl transition duration-300 hover:bg-indigo-500 hover:text-white hover:outline-none text-semibold p-1 py-2 mt-4 w-1/2 mx-auto text-slate-600 font-semibold"
+          className="w-1/2 p-1 py-2 mx-auto mt-4 font-semibold transition duration-300 outline outline-1 outline-black rounded-2xl hover:bg-indigo-500 hover:text-white hover:outline-none text-semibold text-slate-600"
         >
           SignUp
         </button>

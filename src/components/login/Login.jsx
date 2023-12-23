@@ -46,12 +46,12 @@ const Login = () => {
       },
     });
   return (
-    <div className="md:w-96 w-full flex flex-col justify-center border border-indigo-400 rounded-xl relative shadow-slate-300 shadow-md mx-3">
+    <div className="relative flex flex-col justify-center w-full mx-3 border border-indigo-400 shadow-md md:w-96 rounded-xl shadow-slate-300">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center py-10 px-5 md:w-96"
+        className="flex flex-col justify-center px-5 py-10 md:w-96"
       >
-        <h1 className="text-3xl font-bold text-slate-700 text-center mb-5">
+        <h1 className="mb-5 text-3xl font-bold text-center text-slate-700">
           Login
         </h1>
         <label className="flex" htmlFor="email">
@@ -59,7 +59,7 @@ const Login = () => {
           Email
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5">
+        <div className="relative w-full mb-5">
           <FaAt className="absolute top-[13px] left-2 opacity-50" />
 
           <input
@@ -69,17 +69,17 @@ const Login = () => {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            className="rounded-lg py-2 pl-7 w-full outline-none border border-l-4 border-indigo-400 bg-indigo-100"
+            className="w-full py-2 border border-l-4 border-indigo-400 rounded-lg outline-none bg-indigo-50 pl-7"
           />
           {errors.email && touched.email ? (
-            <p className="text-red-500 pl-2 ">{errors.email}</p>
+            <p className="pl-2 text-red-500 ">{errors.email}</p>
           ) : null}
         </div>
         <label htmlFor="password flex">
           Password
           <span className="text-red-500">*</span>
         </label>
-        <div className="w-full relative mb-5">
+        <div className="relative w-full mb-5">
           <FaKey className="absolute top-[13px] left-2 opacity-50" />
           <input
             type={`${toggleEye ? "text" : "password"}`}
@@ -88,7 +88,7 @@ const Login = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             placeholder="Your Password"
-            className="rounded-lg py-2 pl-7 w-full outline-none border border-l-4 border-indigo-400 bg-indigo-100"
+            className="w-full py-2 border border-l-4 border-indigo-400 rounded-lg outline-none bg-indigo-50 pl-7"
           />
           {toggleEye ? (
             <FaEye
@@ -102,22 +102,22 @@ const Login = () => {
             />
           )}
           {errors.password && touched.password ? (
-            <p className="text-red-500 pl-2">{errors.password}</p>
+            <p className="pl-2 text-red-500">{errors.password}</p>
           ) : null}
-          <a href="" className="flex justify-end underline mt-1">
+          <a href="" className="flex justify-end mt-1 underline">
             Forget password
           </a>
         </div>
         <button
           type="submit"
-          className="outline outline-1 outline-indigo-400 rounded-2xl transition duration-300 hover:bg-indigo-400 hover:outline-none hover:text-white font-semibold p-1 mt-5 w-full"
+          className="w-full p-1 mt-5 font-semibold transition duration-300 outline outline-1 outline-indigo-400 rounded-2xl hover:bg-indigo-400 hover:outline-none hover:text-white"
         >
           SignIn
         </button>
 
         <p className="text-center">
           Don't Have an Account?{" "}
-          <Link href="/signup" className="text-blue-700 font-semibold">
+          <Link href="/signup" className="font-semibold text-blue-700">
             SignUp
           </Link>
         </p>
