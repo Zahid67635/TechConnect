@@ -14,6 +14,7 @@ import {
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AIComparison from "@/components/AIComparison";
 
 const page = ({ params }) => {
   const [selectedValue, setSelectedValue] = useState("");
@@ -145,6 +146,9 @@ const page = ({ params }) => {
       <p className="p-2 mx-auto mt-16 mb-8 font-semibold text-center bg-indigo-200 whitespace-nowrap md:text-3xl md:w-1/3 rounded-xl">
         Lets Compare With others
       </p>
+
+      {/* AI Comparison Section */}
+      <AIComparison currentProduct={data} selectedProduct={selectedProduct} />
 
       <div className="relative">
         <div
