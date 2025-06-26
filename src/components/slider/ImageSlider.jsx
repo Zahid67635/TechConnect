@@ -29,6 +29,7 @@ const ImageSlider = () => {
                 width={150}
                 height={100}
                 className="h-16"
+                unoptimized={l === "/amd-logo-vector.png"}
               />
             ))}
           </div>
