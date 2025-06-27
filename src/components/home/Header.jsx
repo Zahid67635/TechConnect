@@ -14,12 +14,12 @@ const Header = () => {
   const route = useRouter();
 
   const fetchData = () =>
-    fetch(`https://64e45121c55563802913014d.mockapi.io/user/v1/gamingpc`)
+    fetch(`/products.json`)
       .then((res) => res.json())
       .then((data) => data);
 
   const { isLoading, isError, data, error } = useQuery({
-    queryKey: ["phones"],
+    queryKey: ["gamingpcDataForHeader"],
     queryFn: fetchData,
   });
 

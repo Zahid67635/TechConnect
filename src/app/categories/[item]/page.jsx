@@ -16,13 +16,13 @@ const page = ({ params }) => {
   const router = useRouter();
   const brands = ["all", "intel", "amd"];
   const { isLoading, isError, refetch, data = [], error } = useQuery({
-    queryKey: ["/products/myp"],
-    queryFn: () =>
-      fetch(
-        `https://64e45121c55563802913014d.mockapi.io/user/v1/${selectedValue}`
-      )
+    queryKey: ["/products/myp", selectedValue],
+    queryFn: () => {
+      const jsonFile = selectedValue === 'phones' ? '/phone.json' : '/products.json';
+      return fetch(jsonFile)
         .then((res) => res.json())
-        .then((data) => data),
+        .then((data) => data);
+    },
     enabled: selectedValue !== "laptop",
   });
   console.log(data.length);
