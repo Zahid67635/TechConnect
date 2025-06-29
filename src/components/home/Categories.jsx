@@ -10,7 +10,7 @@ const Categories = () => {
     },
     {
       name: "Gaming Phone",
-      path: "/categories/phone",
+      path: "/categories/phones",
       image: "https://i.ibb.co/W6yVbs5/asus-rog-7.png",
     },
     {

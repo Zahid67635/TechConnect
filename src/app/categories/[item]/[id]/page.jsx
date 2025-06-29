@@ -143,7 +143,7 @@ const page = ({ params }) => {
           </div>
         </div>
       </div>
-      <p className="p-2 mx-auto mt-16 mb-8 font-semibold text-center bg-indigo-200 whitespace-nowrap md:text-3xl md:w-1/3 rounded-xl">
+      <p className="p-2 mx-auto mt-16 mb-8 font-semibold text-center text-indigo-600 whitespace-nowrap md:text-3xl md:w-1/3 rounded-xl">
         Lets Compare With others
       </p>
 

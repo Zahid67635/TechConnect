@@ -15,14 +15,21 @@ const page = ({ params }) => {
   const categories = ["gamingpc", "phones", "laptop"];
   const router = useRouter();
   const brands = ["all", "intel", "amd"];
-  const { isLoading, isError, refetch, data = [], error } = useQuery({
-    queryKey: ["/products/myp", selectedValue],
-    queryFn: () => {
-      const jsonFile = selectedValue === 'phones' ? '/phone.json' : '/products.json';
-      return fetch(jsonFile)
+  const {
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+    data = [],
+    error,
+  } = useQuery({
+    queryKey: ["/products/myp"],
+    queryFn: () =>
+      fetch(
+        `https://64e45121c55563802913014d.mockapi.io/user/v1/${selectedValue}`
+      )
         .then((res) => res.json())
-        .then((data) => data);
-    },
+        .then((data) => data),
     enabled: selectedValue !== "laptop",
   });
   console.log(data.length);
@@ -41,16 +48,16 @@ const page = ({ params }) => {
     }
     refetch();
   }, [router, selectedValue]);
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <Spinner />;
   }
   if (isError) return "Something went wrong";
   return (
-    <div className="md:my-8 my-3 max-w-7xl mx-auto">
+    <div className="mx-auto my-3 md:my-8 max-w-7xl">
       <div className="flex justify-between">
-        <div className="flex gap-2 items-center px-3">
+        <div className="flex items-center gap-2 px-3">
           <h2>
-            <span className="text-black font-semibold text-xl mb-3">
+            <span className="mb-3 text-xl font-semibold text-black">
               Category:
             </span>
           </h2>
@@ -63,7 +70,7 @@ const page = ({ params }) => {
           >
             {categories?.map((r, i) => (
               <option
-                className="absolute bottom-0 left-0 bg-white text-black"
+                className="absolute bottom-0 left-0 text-black bg-white"
                 key={i}
                 value={r}
               >
@@ -77,46 +84,8 @@ const page = ({ params }) => {
             categoryName !== "gamingpc" ? "hidden" : ""
           }`}
         >
-          <p className="font-semibold text-xl">Filter:</p>
-          {/* <button
-            onClick={() => {
-              setFilterProducts([]);
-              setAll(true);
-              setIntel(false);
-              setAmd(false);
-            }}
-            className={`px-3 py-1 text-black rounded-lg font-semibold shadow-lg hover:drop-shadow-xl ${
-              all ? "bg-indigo-400 text-white" : ""
-            }`}
-          >
-            ALL
-          </button>
-          <button
-            onClick={() => {
-              handleFilter("INTEL");
-              setAll(false);
-              setIntel(true);
-              setAmd(false);
-            }}
-            className={`px-3 py-1 text-black rounded-lg font-semibold shadow-lg hover:drop-shadow-xl ${
-              intel ? "bg-indigo-400 text-white" : ""
-            }`}
-          >
-            INTEL
-          </button>
-          <button
-            onClick={() => {
-              handleFilter("AMD");
-              setAll(false);
-              setIntel(false);
-              setAmd(true);
-            }}
-            className={`px-3 py-1 text-black rounded-lg font-semibold shadow-lg hover:drop-shadow-xl ${
-              amd ? "bg-indigo-400 text-white" : ""
-            }`}
-          >
-            AMD
-          </button> */}
+          <p className="text-xl font-semibold">Filter:</p>
+          
           <select
             value={selectedBrand}
             onChange={(e) => {
@@ -129,13 +98,13 @@ const page = ({ params }) => {
                 setFilterProducts([]);
               }
             }}
-            className="relative h-10 rounded-xl px-2 font-thin bg-indigo-500 cursor-pointer shadow-lg text-white focus:outline-0"
+            className="relative h-10 px-2 font-thin text-white bg-indigo-500 shadow-lg cursor-pointer rounded-xl focus:outline-0"
             type="select"
             name=""
           >
             {brands?.map((r, i) => (
               <option
-                className="absolute bottom-0 left-0 bg-white text-black p-2"
+                className="absolute bottom-0 left-0 p-2 text-black bg-white"
                 key={i}
                 value={r}
               >
@@ -145,7 +114,7 @@ const page = ({ params }) => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 my-10 gap-4 md:gap-6 md:px-0 px-4">
+      <div className="grid grid-cols-1 gap-4 px-4 my-10 sm:grid-cols-2 lg:grid-cols-4 md:gap-6 md:px-0">
         {data?.length > 0 ? (
           filterProducts?.length > 0 ? (
             filterProducts?.map((product) => (

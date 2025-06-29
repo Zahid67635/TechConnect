@@ -43,13 +43,13 @@ const Navbar = () => {
     router.push("/");
   };
   return (
-    <div className={`p-4 py-6 bg-white drop-shadow-lg sticky top-0 z-50`}>
-      <div className="flex justify-between list-none items-center">
+    <div className={`p-4 py-6 bg-white drop-shadow-lg sticky top-0 z-50 `}>
+      <div className="flex items-center justify-between list-none md:w-3/4 md:mx-auto ">
         <div className="flex">
           <Image src="/logoipsum-277.svg" alt="" width={30} height={30} />
           <Link
             href={`/`}
-            className="font-bold md:text-2xl text-xl text-slate-800"
+            className="text-xl font-bold md:text-2xl text-slate-800"
           >
             TechConnect
           </Link>
@@ -68,25 +68,25 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          <div className="md:ml-5 md:flex md:flex-row flex flex-col items-center">
+          <div className="flex flex-col items-center md:ml-5 md:flex md:flex-row">
             {!user || !change ? (
               <>
                 <Link
                   href="/login"
-                  className="p-2 px-4 bg-indigo-500 text-white font-semibold rounded-lg transition duration-200 hover:bg-indigo-600 hover:scale-105"
+                  className="p-2 px-4 font-semibold text-white transition duration-200 bg-indigo-500 rounded-lg hover:bg-indigo-600 hover:scale-105"
                 >
                   SignIn
                 </Link>
                 <Link
                   href="/signup"
-                  className="p-2 px-4 text-black font-semibold rounded-lg ml-2 hover:bg-slate-300"
+                  className="p-2 px-4 ml-2 font-semibold text-black rounded-lg hover:bg-slate-300"
                 >
                   SignUp
                 </Link>
               </>
             ) : (
               <button
-                className="p-2 px-4 bg-indigo-500 text-white font-semibold rounded-lg"
+                className="p-2 px-4 font-semibold text-white bg-indigo-500 rounded-lg"
                 onClick={handleLogout}
               >
                 LogOut
@@ -108,7 +108,7 @@ const Navbar = () => {
         {navs.map((nav) => (
           <li
             key={nav.id}
-            className="my-1 p-2 transition ease-in-out delay-150 duration-300 hover:text-indigo-500 rounded-lg font-semibold"
+            className="p-2 my-1 font-semibold transition duration-300 ease-in-out delay-150 rounded-lg hover:text-indigo-500"
             onClick={handleToggle}
           >
             <Link href={nav.url}>{nav.address}</Link>
@@ -117,14 +117,14 @@ const Navbar = () => {
         <div className="flex flex-col items-center">
           <Link
             href="/login"
-            className="p-2 px-4 bg-indigo-500 text-white font-semibold rounded-lg w-1/3 text-center mb-2"
+            className="w-1/3 p-2 px-4 mb-2 font-semibold text-center text-white bg-indigo-500 rounded-lg"
             onClick={handleToggle}
           >
             SignIn
           </Link>
           <Link
             href="/signup"
-            className="p-2 px-4 text-black font-semibold rounded-lg hover:bg-slate-300 w-1/3 text-center bg-slate-50"
+            className="w-1/3 p-2 px-4 font-semibold text-center text-black rounded-lg hover:bg-slate-300 bg-slate-50"
             onClick={handleToggle}
           >
             SignUp
