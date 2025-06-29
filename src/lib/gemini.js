@@ -1,7 +1,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const genAI = new GoogleGenAI({
-  apiKey: "AIzaSyBKAIPHtONzAcM_NQ0abQVphabW9gpLhus",
+  apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
 });
 
 export const generateComparison = async (product1, product2) => {
