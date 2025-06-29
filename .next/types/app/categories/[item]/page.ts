@@ -1,4 +1,4 @@
-// File: /home/project/src/app/categories/[item]/page.jsx
+// File: D:\Practice\New folder\TechConnect\src\app\categories\[item]\page.jsx
 import * as entry from '../../../../../src/app/categories/[item]/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

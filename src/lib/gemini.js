@@ -1,25 +1,37 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from "@google/genai";
 
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+const genAI = new GoogleGenAI({
+  apiKey: "AIzaSyBKAIPHtONzAcM_NQ0abQVphabW9gpLhus",
+});
 
 export const generateComparison = async (product1, product2) => {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-
     const prompt = `
     Compare these two tech products and provide a detailed analysis:
 
     Product 1: ${product1.model}
     Price: $${product1.price}
     Rating: ${product1.rating}/5
-    Key Features: ${product1.keyFeature?.join(', ')}
-    Specifications: ${product1.spec?.map(spec => Object.entries(spec).map(([key, value]) => `${key}: ${value}`).join(', ')).join('; ')}
+    Key Features: ${product1.keyFeature?.join(", ")}
+    Specifications: ${product1.spec
+      ?.map((spec) =>
+        Object.entries(spec)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(", ")
+      )
+      .join("; ")}
 
     Product 2: ${product2.model}
     Price: $${product2.price}
     Rating: ${product2.rating}/5
-    Key Features: ${product2.keyFeature?.join(', ')}
-    Specifications: ${product2.spec?.map(spec => Object.entries(spec).map(([key, value]) => `${key}: ${value}`).join(', ')).join('; ')}
+    Key Features: ${product2.keyFeature?.join(", ")}
+    Specifications: ${product2.spec
+      ?.map((spec) =>
+        Object.entries(spec)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join(", ")
+      )
+      .join("; ")}
 
     Please provide a comprehensive comparison in the following JSON format:
     {
@@ -40,38 +52,62 @@ export const generateComparison = async (product1, product2) => {
     Focus on technical specifications, performance, value for money, and overall user experience. Be objective and provide specific reasons for your recommendations.
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    const text = response.text();
-    
-    // Try to parse JSON from the response
-    try {
-      // Extract JSON from the response (in case there's extra text)
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      if (jsonMatch) {
-        return JSON.parse(jsonMatch[0]);
-      } else {
-        throw new Error('No JSON found in response');
-      }
-    } catch (parseError) {
-      // If JSON parsing fails, return a structured response based on the text
-      return {
-        winner: "tie",
-        recommendation: text,
-        product1Strengths: ["AI analysis provided"],
-        product2Strengths: ["AI analysis provided"],
-        product1Score: 7,
-        product2Score: 7,
-        keyInsights: {
-          performance: "Detailed analysis provided by AI",
-          valueForMoney: "AI comparison completed",
-          buildQuality: "Professional assessment done"
+    const result = await genAI.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+      config: {
+        thinkingConfig: {
+          thinkingBudget: 0, // Disables thinking
         },
-        summary: "AI-powered comparison completed successfully"
-      };
+      },
+    });
+    if (
+      result.candidates &&
+      result.candidates.length > 0 &&
+      result.candidates[0].content &&
+      result.candidates[0].content.parts &&
+      result.candidates[0].content.parts.length > 0
+    ) {
+      const text = await result.candidates[0]?.content.parts[0]?.text;
+
+      // Try to parse JSON from the response
+      try {
+        const cleaned = text
+          ?.replace(/```json\s*/, "") // Remove the opening ```json
+          .replace(/```$/, "") // Remove the closing ```
+          .trim();
+        const jsonMatch = JSON.parse(cleaned);
+
+        if (jsonMatch) {
+          return jsonMatch;
+        } else {
+          throw new Error("No JSON found in response");
+        }
+      } catch (parseError) {
+        // If JSON parsing fails, return a structured response based on the text
+        return {
+          winner: "tie",
+          recommendation:
+            text || "AI could not provide a clear recommendation.",
+          product1Strengths: ["AI analysis provided"],
+          product2Strengths: ["AI analysis provided"],
+          product1Score: 7,
+          product2Score: 7,
+          keyInsights: {
+            performance: "Detailed analysis provided by AI",
+            valueForMoney: "AI comparison completed",
+            buildQuality: "Professional assessment done",
+          },
+          summary: "AI-powered comparison completed successfully",
+        };
+      }
+    } else {
+      console.log("No candidates found in the response");
     }
   } catch (error) {
-    console.error('Error generating AI comparison:', error);
-    throw new Error('Failed to generate AI comparison. Please check your API key and try again.');
+    console.error("Error generating AI comparison:", error);
+    throw new Error(
+      "Failed to generate AI comparison. Please check your API key and try again."
+    );
   }
 };

@@ -22,30 +22,27 @@ const page = ({ params }) => {
   const currentPath = usePathname().includes("phones");
   const user =
     typeof window !== "undefined" && JSON.parse(localStorage.getItem("status"));
-  
   const { isLoading, isError, data, error } = useQuery({
-    queryKey: [`/products/${params.id}`, params.item],
-    queryFn: () => {
-      const jsonFile = params.item === 'phones' ? '/phone.json' : '/products.json';
-      return fetch(jsonFile)
+    queryKey: [`/products/${params.id}`],
+    queryFn: () =>
+      fetch(
+        `https://64e45121c55563802913014d.mockapi.io/user/v1/${params.item}/${params.id}`
+      )
         .then((res) => res.json())
-        .then((data) => data.find(item => item.id === params.id));
-    },
+        .then((data) => data),
   });
-
-  const { data: products, isLoading: otherLoading } = useQuery({
-    queryKey: ["all", params.item],
-    queryFn: () => {
-      const jsonFile = params.item === 'phones' ? '/phone.json' : '/products.json';
-      return fetch(jsonFile)
-        .then((res) => res.json())
-        .then((data) => data);
-    },
-  });
-
   const { id, image, model, price, keyFeature, rating, spec, brand } =
-    data || {};
-  
+    data || [];
+  const { data: products, isLoading: otherLoading } = useQuery({
+    queryKey: ["all"],
+    queryFn: () =>
+      fetch(
+        `https://64e45121c55563802913014d.mockapi.io/user/v1/${params.item}`
+      )
+        .then((res) => res.json())
+        .then((data) => data),
+  });
+
   const result = products?.filter(
     (product) => product.brand === brand && product.model !== model
   );
